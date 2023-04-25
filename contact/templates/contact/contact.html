@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!--=============== wrapper ===============-->
+    <div id="wrapper">
+        <!--=============== content-holder ===============-->
+        <div class="content-holder elem scale-bg2 transition3">
+            <!--=============== content ===============-->
+            <!--  Page title    -->
+            <div class="fixed-title"><span>تماس</span></div>
+
+
+            <!--  Page title end   -->
+            <div class="content full-height">
+                <!--background -->
+                <div class="full-height-wrap fixed-wrap">
+                    <div class="bg" style="background-image:url({% static 'images/bg/25.jpg' %})"></div>
+                    <div class="overlay"></div>
+                </div>
+                <!--background end-->
+                <!--custom-inner -->
+                <div class="custom-inner contact-inner">
+                    <div class="container">
+                        <h2>تماس</h2>
+                        <div class="separator"></div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>{{ contactWay.contactInfo }}</p>
+                                <ul class="contact-list">
+                                    <li><span>{{ contactWay.address }}</span></li>
+                                    <li><a href="tel:+98{{ contactWay.phone }}"
+                                           class="ltr-text">(+98) {{ contactWay.phone }}</a></li>
+                                    <li><span>{{ contactWay.email }}</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <div id="contact-form">
+                                    <div id="message"></div>
+                                    {% if request.user.is_anonymous %}
+                                        <h2 style="color: #a90000;">برای ارسال پیام ابتدا وارد حساب خود شوید</h2>
+
+                                    {% endif %}
+                                    <hr>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        {{ form.email }}
+                                        {{ form.content }}
+                                        <button type="submit" class="btn-outline-gray btn-lg"
+                                        >ارسال پیام
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--custom-inner end-->
+            </div>
+            <!-- Share container  -->
+            <div class="share-container  isShare"
+                 data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
+        </div>
+        <!-- content holder end -->
+    </div>
+    <!-- wrapper end -->
+    <div class="left-decor"></div>
+    <div class="right-decor"></div>
+{% endblock %}

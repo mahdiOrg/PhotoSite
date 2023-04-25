@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!--=============== wrapper ===============-->
+    <div id="wrapper">
+        <!--=============== Content holder  ===============-->
+        <div class="content-holder elem scale-bg2 transition3">
+            <!-- Fixed title  -->
+            <div class="fixed-title"><span>خانه</span></div>
+            <!-- Fixed title end -->
+            <!--=============== Content ===============-->
+
+            <div class="content full-height">
+                <!-- full-height-wrap end  -->
+                <div class="full-height-wrap">
+                    <div class="swiper-container" id="horizontal-slider" data-mouse-wheel="true">
+                        <div class="swiper-wrapper">
+                            {% for project in new_projects|slice:"5" %}
+
+                                <!--=============== 1 ===============-->
+                                <div class="swiper-slide">
+                                    <div class="bg"
+                                         style="background-image:url({{ project.images.first.image.url }})"></div>
+                                    <div class="overlay"></div>
+                                    <div class="zoomimage"><img src="{{ project.images.first.image.url }}"
+                                                                class="intense" alt=""><i
+                                            class="fa fa-expand"></i></div>
+                                    <div class="slide-title-holder">
+                                        <div class="slide-title">
+                                            <div class="separator-image"><img src="images/separator.png" alt=""></div>
+                                            <h3 class="transition"><a
+                                                    href="{{ project.get_absolute_url }}">{{ project.title }}
+                                            </a></h3>
+                                            <h4><a href="{{ project.get_absolute_url }}">مشاهده</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 1 end -->
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- slider  pagination -->
+                    <div class="pagination"></div>
+                    <!-- pagination  end -->
+                    <!-- slider navigation  -->
+                    <div class="swiper-nav-holder hor hs">
+                        <a class="swiper-nav arrow-left transition " href="#"><i class="fa fa-angle-left"></i></a>
+                        <a class="swiper-nav  arrow-right transition" href="#"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <!-- slider navigation  end -->
+                </div>
+                <!-- full-height-wrap end  -->
+            </div>
+
+            <!-- Content end  -->
+
+            <hr>
+            <!--=============== content ===============-->
+            <div class="content">
+                <section>
+                    <div class="container">
+                        <!--  portfolio header -->
+
+                        <div class="separator separator-image"><img src="images/separator2.png" alt=""></div>
+                        <h2 style="color:#000;">محبوب ترین البوم های اخیر </h2>
+
+                    </div>
+                    <div class="gallery-items    grid-big-pad three-coulms   vis-port-info">
+                        {% for proj in best_projects %}
+
+                            <!-- 1 -->
+                            <div class="gallery-item travel">
+                                <div class="grid-item-holder">
+                                    <div class="box-item">
+                                        <a href="{{ proj.get_absolute_url }}">
+                                            <span class="overlay"></span>
+                                            {% if proj.images.first == None %}
+                                                <img src={% static 'images/preimage.jpg' %} style= "width: 350px;height:
+                                                250px">
+                                            {% else %}
+                                                <img src={{ proj.images.first.image.url }} style= " width: 350px;height:
+                                                250px ">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="grid-item ">
+                                        <h3><a href="{{ proj.get_absolute_url }}"
+                                               class="ajax portfolio-link">{{ proj.title }}</a></h3>
+                                        <span>{{ proj.category }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 1 end -->
+
+                        {% endfor %}
+                    </div>
+
+                    <hr>
+
+                    <div class="container">
+                        <!--  portfolio header -->
+
+                        <div class="separator separator-image"><img src="images/separator2.png" alt=""></div>
+                        <h2 style="color:#000;">جدیدترین آلبوم ها</h2>
+
+                    </div>
+                    <div class="gallery-items    grid-big-pad three-coulms   vis-port-info">
+                        {% for proj in new_projects %}
+
+                            <!-- 1 -->
+                            <div class="gallery-item travel">
+                                <div class="grid-item-holder">
+                                    <div class="box-item">
+                                        <a href="{{ proj.get_absolute_url }}">
+                                            <span class="overlay"></span>
+                                            {% if proj.images.first == None %}
+                                                <img src={% static 'images/preimage.jpg' %} style= "width: 350px;height:
+                                                250px">
+                                            {% else %}
+                                                <img src={{ proj.images.first.image.url }} style= " width: 350px;height:
+                                                250px ">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="grid-item ">
+                                        <h3><a href="{{ proj.get_absolute_url }}"
+                                               class="ajax portfolio-link">{{ proj.title }}</a></h3>
+                                        <span>{{ proj.category }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 1 end -->
+
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'projects:projects_list' %}"><h3 class="subtitle" style="color:#000;">دیدن همه
+                        البوم ها</h3>
+                    </a>
+                </section>
+            </div>
+            <!-- Content end  -->
+        </div>
+    </div>
+{% endblock %}

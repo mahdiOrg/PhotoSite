@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additionalStyle %}
+    <style>
+        .link-underline {
+            text-decoration: underline;
+
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <!--=============== wrapper ===============-->
+    <div id="wrapper">
+        <div class="content-holder elem scale-bg2 transition3">
+            <!-- title -->
+            <div class="fixed-title"><span>نمونه‌کارها</span></div>
+            <!-- portfolio counter -->
+            <div class="count-folio">
+                <div class="num-album"></div>
+                <div class="all-album"></div>
+            </div>
+            <!-- portfolio counter  end-->
+            <!--=============== content ===============-->
+            <div class="content">
+                <section>
+                    <div class="container">
+                        <!--  portfolio header -->
+                        <div class="content-logo">
+                            <img src="{% static 'images/content-logo.png' %}" alt="">
+                        </div>
+                        <div class="separator separator-image"><img src="{% static 'images/separator2.png' %}" alt="">
+                        </div>
+                        <h3 class="subtitle" style="color:#000;">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                            چاپ </h3>
+                        <!--  portfolio header end-->
+                        <!-- Filters-->
+                        <div class="filter-holder inline-filters">
+                            <div id="category-list">
+
+                                <a href="{% url 'projects:projects_list' %}">همه آلبوم ها</a>
+                                <a href="{% url 'projects:projects_list' %}?category=bests"
+                                        {% if request.GET.category == 'bests' %}
+                                   class="link-underline"{% endif %}>مجبوب
+                                    ترین ها</a>
+                                {% for category in categories %}
+                                    <a href="{% url 'projects:projects_list' %}?category={{ category.title }}"
+                                            {% if request.GET.category ==  category.title %}
+                                       class="link-underline"{% endif %}>{{ category.title }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- filters end -->
+                    </div>
+                    <div class="gallery-items    grid-big-pad three-coulms   vis-port-info">
+                        <div id="project-list">
+                            {% for project in projects %}
+
+                                <!-- 1 -->
+                                <div class="gallery-item travel">
+                                    <div class="grid-item-holder">
+                                        <div class="box-item">
+                                            <a href="{{ project.get_absolute_url }}">
+                                                <span class="overlay"></span>
+                                                {% if project.images.first == None %}
+                                                    <img src={% static 'images/preimage.jpg' %} style= "width:
+                                                    350px;height:
+                                                    250px">
+                                                {% else %}
+                                                    <img src={{ project.images.first.image.url }} style= "width:
+                                                    350px;height:
+                                                    250px">
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        <div class="grid-item ">
+                                            <h3><a href="{{ project.get_absolute_url }}"
+                                                   class="ajax portfolio-link">{{ project.title }}</a></h3>
+                                            <span>{{ project.category }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 1 end -->
+                            {% empty %}
+                                <h1>هیچ آلبومی یافت نشد!</h1>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {#                page inatoin start#}
+                    {% if page_obj.has_other_pages %}
+                        <div class="pagination-blog">
+                            {% if page_obj.has_previous %}
+                                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}"
+                                   class="prevposts-link transition"><i
+                                        class="fa fa-chevron-right"></i></a>
+                            {% endif %}
+                            <a href="#" class="blog-page transition">{{ page_obj.number }}</a>
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}"
+                                   class="nextposts-link transition"><i class="fa fa-chevron-left"></i></a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- Content end  -->
+{% endblock %}

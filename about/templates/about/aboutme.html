@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!--=============== wrapper ===============-->
+    <div id="wrapper">
+        <!--=============== Content holder  ===============-->
+        <div class="content-holder elem scale-bg2 transition3">
+            <!--=============== Content   ===============-->
+            <div class="content full-height">
+                <div class="fixed-title"><span>درباره من</span></div>
+                <!--=============== background  ===============-->
+                <div class="full-height-wrap fixed-wrap">
+                    <div class="bg"
+                         style="background-image:url({% static 'images/bg/AdobeStock_174269421-scaled.jpeg' %})"></div>
+
+                </div>
+                <!--background  end  -->
+                <!--=============== custom-inner ===============-->
+                <div class="custom-inner aboutme-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-6">
+                                <h2>درباره من</h2>
+                                <div class="separator"></div>
+                                <div class="clearfix"></div>
+                                <p>{{ about.info }}</p>
+                                <div class="clearfix"></div>
+                                <div class="signature"><img src="images/signature.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- custom-inner end  -->
+            </div>
+            <!-- Content end  -->
+            <!-- Share container  -->
+            <div class="share-container  isShare"
+                 data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
+        </div>
+        <!-- content holder end -->
+    </div>
+    <!-- wrapper end -->
+    <div class="left-decor"></div>
+    <div class="right-decor"></div>
+{% endblock %}

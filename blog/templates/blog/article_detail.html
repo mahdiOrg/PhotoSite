@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additionalStyle %}
+
+    <style>
+        a {
+            color: #666;
+        }
+
+        a:hover {
+            color: #666;
+
+        }
+    </style>
+
+{% endblock %}
+{% block content %}
+    <!--=============== wrapper ===============-->
+    <div id="wrapper">
+        <!--=============== content-holder ===============-->
+        <div class="content-holder elem scale-bg2 transition3">
+            <div class="fixed-title"><span>مجله</span></div>
+            <!--=============== content  ===============-->
+            <div class="content">
+                <!--section  page title   -->
+                <section class="parallax-section">
+                    <div class="overlay"></div>
+                    <div class="bg" style="background-image:url({% static 'images/bg/45.jpg' %})"
+                         data-top-bottom="transform: translateY(200px);"
+                         data-bottom-top="transform: translateY(-400px);"></div>
+                    <div class="container">
+                        <h2>مجله ما</h2>
+                        <div class="separator"></div>
+                        <h3 class="subtitle">لورم ایپسوم متن ساختگی با تولید</h3>
+                    </div>
+                    <a class="custom-scroll-link sect-scroll" href="#sec1"><i class="fa fa-angle-double-down"></i></a>
+                </section>
+                <!--section  page title end  -->
+                <div class="sections-bg"></div>
+                <section id="sec1">
+                    <div class="container column-container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <article>
+                                    <ul class="blog-title">
+                                        <li><a href="#" class="tag">{{ article.add_time }}</a></li>
+                                        <li> -</li>
+                                        <li><a href="#" class="tag"> {{ article.category }} </a></li>
+                                    </ul>
+                                    <div class="blog-media">
+                                        <div class="custom-slider-holder">
+                                            <div class="custom-slider owl-carousel">
+                                                <div class="item">
+                                                    <img src="{% static 'images/bg/26.jpg' %}" class="respimg" alt="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="blog-media">
+                                        <div class="box-item">
+                                            <a href="{{ article.get_absolute_url }}">
+                                                <span class="overlay"></span>
+                                                <div class="blog-media">
+                                                    <img src="{{ article.image1.url }}" alt=""
+                                                         class="respimg">
+                                                    <hr>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="blog-text">
+                                        <h3>{{ article.title }}</h3>
+
+                                        {% for paragraph in article.content.splitlines %}
+                                            <p>{{ paragraph }}</p>
+                                            {% if forloop.counter == 2 and article.image2 %}
+                                                <img src="{{ article.image2.url }}" alt=""
+                                                     class="respimg">
+                                                <hr>
+                                            {% endif %}
+
+                                            {% if forloop.counter == 4 and article.image3 %}
+
+                                                <img src="{{ article.image3.url }}" alt=""
+                                                     class="respimg">
+                                                <hr>
+
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        <h2>تصاویر </h2>
+
+
+                                        <img src="{{ article.image1.url }}" alt=""
+                                             class="respimg" style="margin-bottom: 30px; margin-top: 20px">
+
+                                        {% if article.image2 %}
+
+                                            <img src="{{ article.image2.url }}" alt=""
+                                                 class="respimg" style="margin-bottom: 30px">
+                                        {% endif %}
+                                        {% if article.image3 %}
+                                            <img src="{{ article.image3.url }}" alt=""
+                                                 class="respimg" style="margin-bottom: 30px">
+
+                                        {% endif %}
+
+
+                                    </div>
+                                </article>
+                                <div class="post-author">
+                                    <div class="author-img">
+                                        {% if article.author.profile.image %}
+                                            <img alt="" src="{{ article.author.profile.image.url }}">
+
+                                        {% else %}
+                                            <img alt="" src="{% static 'images/user.png' %}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="author-content">
+                                        <h5><a href="#" title=""
+                                               rel="author">{{ article.author.first_name }}</a></h5>
+                                        {% for paragraph in article.author.profile.info.splitlines %}
+
+                                            <p>{{ paragraph }}</p>
+
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+
+                                <div class="comments-holder">
+                                    <h3>دیدگاه‌ها <span>{{ article.comments.count }}</span></h3>
+                                    <ul class="commentlist clearafix">
+                                        {% for comment in article.comments.all %}
+                                            {% if comment.parent == None %}
+                                                <li class="comment">
+                                                    <div class="comment-body">
+                                                        <div class="comment-author">
+                                                            <img alt="" src="images/blog/users/1.jpg" width="50"
+                                                                 height="50">
+                                                        </div>
+                                                        <cite class="fn"><a href="#">{{ comment.user }}</a></cite>
+                                                        <div class="comment-meta">
+                                                            <h6><a href="#">{{ comment.add_time }}</a> / <a
+                                                                    class="comment-reply-link" href="#">پاسخ</a></h6>
+                                                        </div>
+                                                        <p>{{ comment.content }}</p>
+                                                    </div>
+                                                    {% for child in comment.child_comments.all %}
+                                                        <ul class="children">
+                                                            <li class="comment">
+                                                                <!--comment body-->
+                                                                <div class="comment-body">
+                                                                    <div class="comment-author">
+                                                                        <img alt="" src="images/blog/users/2.jpg"
+                                                                             width="50"
+                                                                             height="50">
+                                                                    </div>
+                                                                    <cite class="fn"><a
+                                                                            href="#">{{ child.user }}</a></cite>
+                                                                    <div class="comment-meta">
+                                                                        <h6><a href="#">{{ child.add_time }}</a>
+
+                                                                        </h6>
+                                                                    </div>
+                                                                    <p>{{ child.content }}</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    {% endfor %}
+
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="comment-form-holder">
+                                    <h3>دیدگاه خود را بیان کنید</h3>
+                                    <div id="respond" class="clearafix">
+                                        <div class="comment-reply-form">
+                                            <form action="" method="post" id="commentform" class="form-horizontal"
+                                                  name="commentform">
+                                                {% csrf_token %}
+
+                                                <div class="comment-form-comment control-group">
+                                                    <div class="controls">
+                                                        {{ comment_form.as_p }}
+                                                        {% if request.user.is_authenticated %}
+                                                        <button class="transition button" type="submit">ارسال دیدگاه
+                                                        </button>
+                                                        {% else %}
+                                                        <a style="font-size:large" href="{% url 'account:register' %}" class="btn btn-outline-gray  "">برای ارسال نظر وارد شوید
+                                                        </a>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--end respond-->
+                                </div>
+                            </div>
+                            <!--================= sidebar  ================-->
+                            {% include 'sidebar.html' %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Content end  -->
+            <!-- Share container  -->
+            <div class="share-container  isShare"
+                 data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
+        </div>
+        <!-- content holder end -->
+    </div>
+    <!-- wrapper end -->
+    <div class="left-decor"></div>
+    <div class="right-decor"></div>
+{% endblock %}

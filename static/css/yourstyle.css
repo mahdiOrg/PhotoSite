@@ -1,0 +1,65 @@
+/*******************************************************************************
+ Add your custom css styles here
+ *******************************************************************************/
+.avatar {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+}
+
+.username {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-holder-coustom {
+    float: left;
+    position: relative;
+    display: block;
+}
+
+.button-group-custome {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.button-custome {
+    display: inline-block;
+    padding: 15px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(220, 220, 220, 0.29);
+    color: #100000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 5px;
+
+}
+
+.btn-outline-gray {
+    color: #6c757d; /* sets the text color to gray */
+    border-color: #6c757d; /* sets the border color to gray */
+
+}
+
+.btn-outline-gray:hover {
+    color: #fff; /* sets the text color to white when hovered */
+    background-color: #6c757d; /* sets the background color to gray when hovered */
+    border-color: #6c757d; /* sets the border color to gray when hovered */
+}
+
+.password_custome {
+    height: 50px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: rgb(80, 79, 79);
+    padding: 10px;
+    font-size: small;
+}

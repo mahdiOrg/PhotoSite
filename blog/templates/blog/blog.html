@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additionalStyle %}
+
+    <style>
+        a {
+            color: #666;
+        }
+
+        a:hover {
+            color: #666;
+
+        }
+    </style>
+
+{% endblock %}
+{% block content %}
+    <!--=============== wrapper ===============-->
+    <div id="wrapper">
+        <!--=============== content-holder ===============-->
+        <div class="content-holder elem scale-bg2 transition3">
+            <div class="fixed-title"><span>مجله</span></div>
+            <!--=============== content  ===============-->
+            <div class="content">
+                <!--section  page title   -->
+                <section class="parallax-section">
+                    <div class="overlay"></div>
+                    <div class="bg" style="background-image:url({% static 'images/bg/22.jpg' %})"
+                         data-top-bottom="transform: translateY(200px);"
+                         data-bottom-top="transform: translateY(-400px);"></div>
+                    <div class="container">
+                        <h2>مجله ما</h2>
+                        <div class="separator"></div>
+                        <h3 class="subtitle">لورم ایپسوم متن ساختگی با تولید</h3>
+                    </div>
+                    <a class="custom-scroll-link sect-scroll" href="#sec1"><i class="fa fa-angle-double-down"></i></a>
+                </section>
+                <!--section  page title end  -->
+                <div class="sections-bg"></div>
+                <!--section    -->
+                <section id="sec1">
+                    <div class="container column-container">
+                        <!--================= articles   ================-->
+                        <div class="row">
+                            <div class="col-md-7">
+
+                                {% for article in article_list %}
+                                    <article>
+                                        <ul class="blog-title">
+                                            <li>{{ article.author.first_name }}</li>
+                                            <li>-</li>
+                                            <li><a href="#" class="tag"> {{ article.category.title }} </a></li>
+                                        </ul>
+                                        <div class="blog-media">
+                                            <div class="box-item">
+                                                <a href="{{ article.get_absolute_url }}">
+                                                    <span class="overlay"></span>
+                                                    <img src="{{ article.image1.url }}" alt=""
+                                                         class="respimg">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="blog-text">
+                                            <a href="{{ article.get_absolute_url }}"><h3>{{ article.title }}</h3></a>
+                                            <p>
+                                                {{ article.content|slice:300 }}
+                                            </p>
+                                            <a href="{{ article.get_absolute_url }}"
+                                               class="btn btn-outline-gray"><span>بیشتر بخوانید </span> <i
+                                                    class="fa fa-long-arrow-left"></i></a>
+                                        </div>
+                                    </article>
+                                {% endfor %}
+
+                                <div class="clearfix"></div>
+                                <!-- pagination   -->
+                                {% if page_obj.has_other_pages %}
+                                    <div class="pagination-blog">
+                                        {% if page_obj.has_previous %}
+                                            <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}"
+                                               class="prevposts-link transition"><i
+                                                    class="fa fa-chevron-right"></i></a>
+                                        {% endif %}
+                                        <a href="#" class="blog-page transition">{{ page_obj.number }}</a>
+                                        {% if page_obj.has_next %}
+                                            <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}"
+                                               class="nextposts-link transition"><i class="fa fa-chevron-left"></i></a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!--================= sidebar  ================-->
+                            {% include 'sidebar.html' %}
+
+                            <!-- end sidebar -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Content end  -->
+            <!-- Share container  -->
+            <div class="share-container  isShare"
+                 data-share="['facebook','pinterest','googleplus','twitter','linkedin']"></div>
+        </div>
+        <!-- content holder end -->
+    </div>
+    <!-- wrapper end -->
+    <div class="left-decor"></div>
+    <div class="right-decor"></div>
+{% endblock %}

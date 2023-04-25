@@ -1,0 +1,57 @@
+<div class="col-md-4">
+    <div class="sidebar">
+        <!-- widget -->
+        <div class="widget">
+            <div class="searh-holder">
+                <form action="{% url 'blog:article_list' %}" class="searh-inner">
+                    <input name="search" id="search" type="text" class="search"
+                           placeholder="جستجو ...">
+                    <button class="search-submit" id="submit_btn"><i
+                            class="fa fa-search transition"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- widget -->
+        <div class="widget">
+            <h3>آخرین مطالب</h3>
+            <ul class="widget-posts">
+                {% for article in new_articles %}
+                    <li class="clearfix">
+                        <a href="{{ article.get_absolute_url }}" class="widget-posts-img"><img
+                                src="{{ article.image1.url }}"
+                                class="respimg" alt=""></a>
+                        <div class="widget-posts-descr">
+                            <a href="{{ article.get_absolute_url }}" title="{{ article.title }}">{{ article.title }}</a>
+                            <span class="widget-posts-date"> {{ article.author }}</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- widget -->
+        <div class="widget">
+            <h3>دسته‌بندی ها</h3>
+            <div class="clearfix"></div>
+            <ul>
+                {% for category in categories %}
+                <li class="cat-item"><a href="?category={{ category.title }}">{{ category.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- widget -->
+        <div class="widget">
+            <h3>برچسب ها</h3>
+            <div class="clearfix"></div>
+            <ul class="tagcloud">
+                <li><a href="#" class="transition link">نمونه‌کارها</a></li>
+                <li><a href="#" class="transition link">برچسب</a></li>
+                <li><a href="#" class="transition link">دمو</a></li>
+                <li><a href="#" class="transition link">بلاگ</a></li>
+                <li><a href="#" class="transition link">عکاسی</a></li>
+                <li><a href="#" class="transition link">طراحی وب</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

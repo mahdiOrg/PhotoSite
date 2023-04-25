@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section class="flat-form" id="sec3">
+        <div class="container">
+            <h2>برای ثبت نام فرم زیر را تکمیل کنید</h2>
+            <div id="contact-form">
+                <div id="message"></div>
+                {% if request.user.is_authenticated %}
+                    <p>you are log in !!!!!!</p>
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div
+                        " style="font-size: medium ;color: darkred;height: 30px">{{ register_form.username.errors }}
+                    </div>
+                    <div style="font-size: medium ;color: darkred;height: 30px">{{ register_form.password_check.errors }}</div>
+                    <hr>
+                    {{ register_form.username }}
+                    {{ register_form.name }}
+                    {{ register_form.password }}
+                    {{ register_form.password_check }}
+                    <hr>
+                    <button type="submit" class=" btn-outline-gray btn-lg ">ورود به حساب</button>
+                    </form>
+                {% endif %}
+        </div>
+        </div>
+    </section>
+
+{% endblock %}
