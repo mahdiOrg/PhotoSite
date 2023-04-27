@@ -107,10 +107,10 @@
 <!--=============== Footer ===============-->
 <footer>
     <div class="policy-box">
-        <span>تبریز، فلکه دانشگاه، برج بلور، طبقه 345</span>
+        <span>{{ about_data.address }}</span>
         <ul>
-            <li><a href="#">yourmail@domain.com</a></li>
-            <li><span class="ltr-text">(+98) 123 456 789</span></li>
+            <li><a href="#">{{ about_data.email}}</a></li>
+            <li><span class="ltr-text">(+98){{about_data.phone}}</span></li>
         </ul>
     </div>
     <!-- footer social -->

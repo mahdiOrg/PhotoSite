@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'blog.context_processors.new_articles',
+                'context_processors.context_processors.about_data_c'
             ],
         },
     },
