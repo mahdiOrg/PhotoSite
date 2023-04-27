@@ -4,7 +4,10 @@
 <head>
     <!--=============== basic  ===============-->
     <meta charset="UTF-8">
-    <title>قالب Outdoor | قالب عکاسی و گالری تصاویر آوتدور</title>
+
+    {% block title %}
+    {% endblock %}
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
@@ -109,8 +112,8 @@
     <div class="policy-box">
         <span>{{ about_data.address }}</span>
         <ul>
-            <li><a href="#">{{ about_data.email}}</a></li>
-            <li><span class="ltr-text">(+98){{about_data.phone}}</span></li>
+            <li><a href="#">{{ about_data.email }}</a></li>
+            <li><span class="ltr-text">(+98){{ about_data.phone }}</span></li>
         </ul>
     </div>
     <!-- footer social -->

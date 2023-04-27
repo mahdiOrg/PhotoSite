@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block title %}
+    <title>{{ article.title }}</title>
+{% endblock %}
+
 {% block additionalStyle %}
 
     <style>
@@ -190,11 +195,13 @@
                                                     <div class="controls">
                                                         {{ comment_form.as_p }}
                                                         {% if request.user.is_authenticated %}
-                                                        <button class="transition button" type="submit">ارسال دیدگاه
-                                                        </button>
+                                                            <button class="transition button" type="submit">ارسال دیدگاه
+                                                            </button>
                                                         {% else %}
-                                                        <a style="font-size:large" href="{% url 'account:register' %}" class="btn btn-outline-gray  "">برای ارسال نظر وارد شوید
-                                                        </a>
+                                                            <a style="font-size:large"
+                                                               href="{% url 'account:register' %}"
+                                                               class="btn btn-outline-gray  "">برای ارسال نظر وارد شوید
+                                                            </a>
                                                         {% endif %}
                                                     </div>
                                                 </div>
