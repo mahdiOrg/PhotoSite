@@ -148,7 +148,7 @@
                                                             <img alt="" src="{% static 'images/user.png' %}" width="50"
                                                                  height="50">
                                                         </div>
-                                                        <cite class="fn"><a href="#">{{ comment.user }}</a></cite>
+                                                        <cite class="fn"><a href="#">{{ comment.user.first_name }}</a></cite>
                                                         <div class="comment-meta">
                                                             <h6><a href="#">{{ comment.add_time }}</a> / <a
                                                                     class="comment-reply-link" href="#">پاسخ</a></h6>
@@ -166,7 +166,7 @@
                                                                              height="50">
                                                                     </div>
                                                                     <cite class="fn"><a
-                                                                            href="#">{{ child.user }}</a></cite>
+                                                                            href="#">{{ child.user.first_name }}</a></cite>
                                                                     <div class="comment-meta">
                                                                         <h6><a href="#">{{ child.add_time }}</a>
 

@@ -23,7 +23,7 @@
                                 class="respimg" alt=""></a>
                         <div class="widget-posts-descr">
                             <a href="{{ article.get_absolute_url }}" title="{{ article.title }}">{{ article.title }}</a>
-                            <span class="widget-posts-date"> {{ article.author }}</span>
+                            <span class="widget-posts-date"> {{ article.author.first_name }}</span>
                         </div>
                     </li>
                 {% endfor %}
